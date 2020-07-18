@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal web component</title>
+    <script src="modal.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 2rem;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <rt-modal>
+      <h1 slot="title">Please Confirm</h1>
+      <p>with your confirmation you agree to pay the full amount</p>
+    </rt-modal>
+    <p>Please confirm your choice.</p>
+    <button>Show Details and Confirm</button>
+    <script>
+        const showBtn = document.querySelector('button');
+        const modal = document.querySelector('rt-modal');
+        modal.addEventListener('cancel',() => {
+          console.log('cancelling');
+        });
+        modal.addEventListener('confirm',() => {
+          console.log('confirming');
+        });
+        showBtn.addEventListener('click',() => {
+            //modal.setAttribute('opened','')     //setting attribute manually
+            if(!modal.isOpen)  {
+              modal.open();
+              console.log('opening....');
+              console.log(modal.isOpen);
+            }               
+           
+        });
+    </script>
+  </body>
+</html>
